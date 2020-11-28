@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'rails', '~> 6.0'
+gem 'rails', ENV['RAILS_VERSION']
 gem 'byebug'
 
 group :development do

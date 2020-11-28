@@ -1,6 +1,6 @@
 # MJML-Rails
 
-[![Build Status](https://api.travis-ci.org/sighmon/mjml-rails.svg?branch=master)](http://travis-ci.org/sighmon/mjml-rails) [![Gem Version](https://badge.fury.io/rb/mjml-rails.svg)](https://badge.fury.io/rb/mjml-rails)
+[![Build Status](https://github.com/sighmon/mjml-rails/workflows/test/badge.svg?branch=master)](https://github.com/sighmon/mjml-rails/actions?query=workflow%3Atest+branch%3Amaster) [![Gem Version](https://badge.fury.io/rb/mjml-rails.svg)](https://badge.fury.io/rb/mjml-rails)
 
 **MJML-Rails** allows you to render HTML e-mails from an [MJML](https://mjml.io) template.
 
