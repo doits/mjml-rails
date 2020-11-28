@@ -10,7 +10,7 @@ module Mjml
     #
     # @param input [String] The string to transform in html
     def initialize input
-      raise Mjml.mjml_binary_error_string unless mjml_bin
+      raise Mjml.mjml_binary_error_string unless Mjml.valid_mjml_binary
       @input = input
     end
 
@@ -41,14 +41,5 @@ module Mjml
         out_tmp_file.read
       end
     end
-
-    private
-
-      # Get mjml bin path
-      #
-      # @return [String]
-      def mjml_bin
-        Mjml::BIN
-      end
   end
 end

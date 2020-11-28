@@ -7,5 +7,10 @@ module Mjml
       ActionView::Template.register_template_handler :mjml, Mjml::Handler.new
       Mime::Type.register_alias "text/html", :mjml
     end
+
+    config.to_prepare do
+      # make sure we have a valid mjml binary
+      Mjml.valid_mjml_binary
+    end
   end
 end

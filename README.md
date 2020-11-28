@@ -110,18 +110,23 @@ Mjml.setup do |config|
 end
 ```
 
-If you’d like to specify a different MJML binary to run other than `4.`:
+You can optionally provide a custom MJML binary if MJML-Rails cannot find it:
+
+```ruby
+# config/initializers/mjml.rb
+Mjml.setup do |config|
+  config.mjml_binary = "/path/to/custom/mjml"
+end
+```
+
+If you’d like to specify a different MJML version, set it like this:
 
 ```ruby
 # config/initializers/mjml.rb
 Mjml.setup do |config|
   config.mjml_binary_version_supported = "3.3.5"
 end
-# If you set a different MJML binary version, you need to re-discover the binary
-Mjml::BIN = Mjml.discover_mjml_bin
 ```
-
-**Note:** If you set a different MJML binary you’ll see warnings in your logs of `already initialized constant Mjml::BIN`. Read more: [#39](https://github.com/sighmon/mjml-rails/issues/39#issuecomment-429151908)
 
 ### MJML v3.x & v4.x support
 
