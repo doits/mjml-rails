@@ -25,7 +25,7 @@ module Mjml
   @@mjml_binary_error_string = "Couldn't find the MJML #{Mjml.mjml_binary_version_supported} binary.. have you run $ npm install mjml?"
   @@beautify = true
   @@minify = false
-  @@validation_level = "soft"
+  @@validation_level = "strict"
 
   def self.check_version(bin)
     stdout, _, status = run_mjml('--version', mjml_bin: bin)

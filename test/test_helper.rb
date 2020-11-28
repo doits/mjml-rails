@@ -25,3 +25,20 @@ I18n.enforce_available_locales = false
 
 ActionMailer::Base.delivery_method = :test
 ActionMailer::Base.perform_deliveries = true
+
+def with_settings(settings)
+  original_settings =
+    settings.each_with_object({}) do |(key, _), agg|
+      agg[key] = Mjml.public_send(key)
+    end
+
+  settings.each do |key, value|
+    Mjml.public_send("#{key}=", value)
+  end
+
+  yield
+ensure
+  original_settings.each do |key, value|
+    Mjml.public_send("#{key}=", value)
+  end
+end

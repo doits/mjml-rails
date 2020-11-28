@@ -13,54 +13,42 @@ describe Mjml::Parser do
         parser.stubs(:run).raises(error)
       end
 
-      describe 'when render exception raising is enabled' do
-        before do
-          Mjml.setup do |config|
-            config.raise_render_exception = true
-          end
-        end
-
-        it 'raises exception' do
+      it 'raises exception with render exception enabled' do
+        with_settings(raise_render_exception: true) do
           err = expect { parser.render }.must_raise(custom_error_class)
           expect(err.message).must_equal error.message
         end
       end
 
-      describe 'when render exception raising is disabled' do
-        before do
-          Mjml.setup do |config|
-            config.raise_render_exception = false
-          end
-        end
-
-        it 'returns empty string' do
+      it 'returns empty string with exception raising disabled' do
+        with_settings(raise_render_exception: false) do
           expect(parser.render).must_equal ''
         end
       end
     end
 
     describe 'can read beautify, minify, and validation_level configs' do
-      it 'use defaults if no config is set' do
+      it 'uses defaults if no config is set' do
         expect(Mjml.beautify).must_equal(true)
         expect(Mjml.minify).must_equal(false)
-        expect(Mjml.validation_level).must_equal('soft')
+        expect(Mjml.validation_level).must_equal('strict')
       end
 
-      it 'use setup config' do
+      it 'uses setup config' do
         Mjml.setup do |config|
           config.beautify = false
           config.minify = true
-          config.validation_level = 'strict'
+          config.validation_level = 'soft'
         end
 
         expect(Mjml.beautify).must_equal(false)
         expect(Mjml.minify).must_equal(true)
-        expect(Mjml.validation_level).must_equal('strict')
+        expect(Mjml.validation_level).must_equal('soft')
 
         Mjml.setup do |config|
           config.beautify = true
           config.minify = false
-          config.validation_level = 'soft'
+          config.validation_level = 'strict'
         end
       end
     end

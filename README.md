@@ -95,18 +95,20 @@ If there are configurations you'd like change:
 - render errors: defaults to `true` (errors raised)
 - minify: defaults to `false` (not minified)
 - beautify: defaults to `true` (beautified)
-- validation_level: defaults to `soft` (MJML syntax validation)
+- validation_level: defaults to `strict` (abort on any template error, see [MJML validation documentation](https://github.com/mjmlio/mjml/tree/master/packages/mjml-validator#validating-mjml) for possible values)
 
 ```ruby
 # config/initializers/mjml.rb
 Mjml.setup do |config|
-  # set to `false` to ignore errors silently
-  config.raise_render_exception = true
+  # ignore errors silently
+  config.raise_render_exception = false
 
   # optimize the size of your email
   config.beautify = false
   config.minify = true
-  config.validation_level = "strict"
+
+  # render illformed MJML templates, not recommended
+  config.validation_level = "soft"
 end
 ```
 
